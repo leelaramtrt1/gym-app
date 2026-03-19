@@ -1,0 +1,12 @@
+{
+  "name": "gym-management-unified",
+  "version": "1.0.0",
+  "description": "Unified Gym Management App",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "build": "cd frontend && npm install && npm run build",
+    "install-backend": "cd backend && npm install"
+  },
+  "dependencies": {}
+}
