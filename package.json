@@ -8,5 +8,8 @@
     "build": "cd frontend && npm install && npm run build",
     "install-backend": "cd backend && npm install"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "engines": {
+    "node": "18.x"
+  }
 }
