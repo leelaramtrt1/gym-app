@@ -19,8 +19,21 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+
+// Diagnostic: Log the build path and verify file existence
+const fs = require('fs');
+const buildPath = path.resolve(__dirname, '../frontend/build');
+console.log(`\n--- [RENDER DEBUG] ---`);
+console.log(`Current __dirname: ${__dirname}`);
+console.log(`Target buildPath:  ${buildPath}`);
+console.log(`Build path exists? ${fs.existsSync(buildPath)}`);
+if (fs.existsSync(buildPath)) {
+  console.log(`index.html exists? ${fs.existsSync(path.join(buildPath, 'index.html'))}`);
+}
+console.log(`----------------------\n`);
+
 // Serve static files from the React frontend app
-app.use(express.static(path.join(__dirname, '../frontend/build')));
+app.use(express.static(buildPath));
 
 const allowedOrigins = [
   'http://localhost:3000', 

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gym-app-90vc.onrender.com/sitemap.xml
