@@ -21,7 +21,7 @@ export const DashboardPage = ({ currentUser, showToast, Layout, dashboardStyles 
       } catch (err) { console.error(err); }
     };
     fetchStats();
-  }, []);
+  }, [currentUser.id]);
 
   const handleOwnerScan = async (scannedId) => {
     const action = scanConfig.action;
@@ -102,7 +102,7 @@ export const MemberManagement = ({ currentUser, showToast, Layout }) => {
       } catch (err) { console.error(err); }
     };
     fetchMembers();
-  }, []);
+  }, [currentUser.id]);
 
   const handleViewAttendance = async (member) => {
     setSelectedMember(member);

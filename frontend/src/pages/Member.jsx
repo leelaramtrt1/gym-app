@@ -15,7 +15,7 @@ export const MemberDashboard = ({ currentUser, showToast, Layout, dashboardStyle
       } catch (err) { console.error('Failed to fetch stats:', err); }
     };
     fetchMemberStats();
-  }, []);
+  }, [currentUser.id]);
 
   const handleMemberScan = async (scannedData) => {
     const action = scanConfig.action;

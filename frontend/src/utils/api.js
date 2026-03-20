@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-// Get the current hostname (e.g., 10.138.191.237 or localhost)
-const hostname = window.location.hostname;
+// Get API base URL
 // RELATIVE PATH: Used when frontend is served by the backend
 const baseURL = "/api";
 
