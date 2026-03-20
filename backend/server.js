@@ -66,7 +66,8 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendVerificationEmail = async (email, token, name, type = 'owner') => {
-  const verificationUrl = `http://localhost:3000/verify/${token}`;
+  const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+  const verificationUrl = `${frontendUrl}/verify/${token}`;
   
   // LOG THE LINK FOR CONSOLE TESTING
   console.log(`\n📧 EMAIL SIMULATION [${type}]`);
@@ -117,11 +118,17 @@ const authenticateToken = (req, res, next) => {
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://user:password@cluster.mongodb.net/gym-app');
+    const uri = process.env.MONGODB_URI;
+    if (!uri) {
+      console.log('\n⚠️  WARNING: MONGODB_URI is not defined in environment variables!');
+      console.log('Falling back to local testing URI...\n');
+    }
+    await mongoose.connect(uri || 'mongodb://localhost:27017/gym-app');
     console.log('✅ MongoDB Connected Successfully!');
   } catch (error) {
     console.log('❌ MongoDB Connection Error:', error.message);
-    process.exit(1);
+    console.log('TIP: If you are deployed, check your Environment Variables and MongoDB Atlas Whitelist (0.0.0.0/0)');
+    // process.exit(1); // Don't exit, let server start so we can see logs
   }
 };
 
